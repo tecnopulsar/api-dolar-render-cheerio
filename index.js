@@ -14,12 +14,12 @@ const PORT = process.env.PORT || 5000;
 
 app.get("/", cors(), async (req, res) => {
     try {
-        const {data} = await axios.get('https://www.bcentral.cl/inicio');
+        const {data} = await axios.get('https://dolarhoy.com/');
 
         const $ = cheerio.load(data)
         const selectorDolar = 
-        "#market-scrll-2 > tbody > tr:nth-child(2) > td.buy > a > div > div.buy-valueDelegate > div > div > div.fin-indicators-col1 > div > div > div:nth-child(3) > div > p.basic-text.fs-2.f-opensans-bold.text-center.c-blue-nb-2"
-  
+        "#home_0 > div.modulo.modulo_bloque > section > div > div > div > div.tile.is-parent.is-9.cotizacion.is-vertical > div > div.tile.is-parent.is-5 > div > div.values > div.compra > div.val"
+        
         const objetoValores = {
             fecha : new Date().toLocaleDateString(),
             dolar: $(selectorDolar).text().split(' ')[0].trim() || "sin datos"
